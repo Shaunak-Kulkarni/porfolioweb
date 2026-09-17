@@ -447,46 +447,6 @@ button {
   margin-bottom: 1.5rem;
 }
 
-/* Quote Callout */
-.hero-quote-card {
-  position: relative;
-  background: var(--bg-card);
-  border-left: 3px solid var(--accent-blue);
-  border-top: 1px solid var(--border-color);
-  border-right: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  padding: 1rem 1.35rem;
-  margin-bottom: 1.5rem;
-  width: 100%;
-  box-shadow: var(--shadow-sm);
-}
-
-.quote-icon {
-  position: absolute;
-  top: 0.85rem;
-  right: 1rem;
-  font-size: 1.25rem;
-  color: var(--text-muted);
-  opacity: 0.3;
-}
-
-.quote-text {
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  font-style: italic;
-  color: var(--text-primary);
-  line-height: 1.45;
-  margin-bottom: 0.25rem;
-}
-
-.quote-author {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  display: block;
-}
-
 /* Bio Text */
 .hero-bio-container {
   margin-bottom: 1.85rem;

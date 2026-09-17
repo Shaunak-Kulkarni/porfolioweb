@@ -7,7 +7,7 @@
  */
 
 // Global Portfolio Version (Increment here for subsequent updates!)
-const PORTFOLIO_VERSION = "v1.7";
+const PORTFOLIO_VERSION = "v1.8";
 
 document.addEventListener('DOMContentLoaded', () => {
   initVersionBadge();
