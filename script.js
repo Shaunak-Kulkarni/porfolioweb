@@ -7,7 +7,7 @@
  */
 
 // Global Portfolio Version (Increment here for subsequent updates!)
-const PORTFOLIO_VERSION = "v1.8";
+const PORTFOLIO_VERSION = "v1.9";
 
 document.addEventListener('DOMContentLoaded', () => {
   initVersionBadge();
@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initScrollSpy();
   initCopyEmail();
+  initCustomCursor();
 });
 
 /* --------------------------------------------------------------------------
@@ -209,3 +210,75 @@ function showToast(message, type = 'info') {
     setTimeout(() => toast.remove(), 300);
   }, 3000);
 }
+
+/* --------------------------------------------------------------------------
+ * 8. CUSTOM CURSOR FOLLOWER WITH HARDWARE-ACCELERATED LERP & ACCESSIBILITY
+ * -------------------------------------------------------------------------- */
+function initCustomCursor() {
+  // Respect user preference for reduced motion & touch screens
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none) or (pointer: coarse)').matches) return;
+
+  const follower = document.getElementById('cursorFollower');
+  if (!follower) return;
+
+  let mouseX = -100;
+  let mouseY = -100;
+  let currentX = -100;
+  let currentY = -100;
+  let isVisible = false;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (!isVisible) {
+      isVisible = true;
+      follower.style.opacity = '1';
+    }
+  });
+
+  window.addEventListener('mouseleave', () => {
+    isVisible = false;
+    follower.style.opacity = '0';
+  });
+
+  window.addEventListener('mouseenter', () => {
+    isVisible = true;
+    follower.style.opacity = '1';
+  });
+
+  window.addEventListener('mousedown', () => {
+    follower.classList.add('clicking');
+  });
+
+  window.addEventListener('mouseup', () => {
+    follower.classList.remove('clicking');
+  });
+
+  // Expand follower over clickable & interactive elements
+  const interactiveSelector = 'a, button, [role="button"], input, textarea, .btn-pill, .social-card-btn, .project-repo-link, .clean-project-card, .interest-card, .timeline-card, .mobile-menu-toggle, .footer-back-to-top';
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest(interactiveSelector)) {
+      follower.classList.add('active');
+    }
+  });
+
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest(interactiveSelector)) {
+      follower.classList.remove('active');
+    }
+  });
+
+  // Hardware-accelerated smooth interpolation loop (LERP)
+  function render() {
+    const ease = 0.2;
+    currentX += (mouseX - currentX) * ease;
+    currentY += (mouseY - currentY) * ease;
+
+    follower.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+}
+

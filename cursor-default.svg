@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <!-- Outer Dark Border for crisp contrast against any background -->
+  <path d="M4 4L11.5 24L15.5 16.5L23 15L4 4Z" fill="#0F1015" stroke="#0F1015" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Main Blue Body -->
+  <path d="M4 4L11.5 24L15.5 16.5L23 15L4 4Z" fill="#4A90E2" stroke="#FFFFFF" stroke-width="1.2" stroke-linejoin="round"/>
+  <!-- Inner Highlight -->
+  <path d="M6.5 7L11 18.5L14 14.5L18.5 13.5L6.5 7Z" fill="#78B2F5"/>
+</svg>

@@ -28,7 +28,12 @@ A sleek, strictly dark portfolio website engineered with semantic HTML5, modern 
 
 - **Clean Minimalist Header**: Top-left corner logo space removed for an unobstructed, modern navigation bar.
 - **Clean Hero Section**: Focused, spacious layout keeping the headline *"Building with intent, learning with curiosity"*, personal introduction for Shaunak, and iteration badge.
-- **Iteration Counter**: Currently at **v1.8** (`Still learning & improving day by day`), easily incrementable in `script.js`.
+- **Iteration Counter**: Currently at **v1.9** (`Still learning & improving day by day`), easily incrementable in `script.js`.
+- **Custom Branded Pointers**:
+  - Precision 32x32 SVG pointers in Shaunak's theme color (`#4A90E2`) with dark borders for crisp visibility across any background.
+  - Aligned hotspots: default arrow tip at `(4, 4)`, clickable crosshair center at `(16, 16)`, and I-beam text selector at `(16, 16)`.
+  - Ambient trailing follower aura with lerp easing, hover enlargement, and click compression.
+  - Accessibility compliant: automatic system fallback, disabled on touch/coarse devices and respects `prefers-reduced-motion`.
 - **Linear Journey Timeline**: Chronological, distraction-free roadmap highlighting academic foundations, full-stack projects, and milestones.
 - **Curricular & Non-Curricular Interests**:
   - *Engineering & Systems*: Full-Stack Web Architecture, Database Modeling & Performance, Clean Code.
@@ -44,7 +49,7 @@ A sleek, strictly dark portfolio website engineered with semantic HTML5, modern 
 
 Open `portfolio/script.js` and edit line 10:
 ```javascript
-const PORTFOLIO_VERSION = "v1.8"; // Increment on your next update!
+const PORTFOLIO_VERSION = "v1.9"; // Increment on your next update!
 ```
 
 ---

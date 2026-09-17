@@ -1122,3 +1122,102 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   CUSTOM BRANDED CURSOR & PRECISION POINTER SYSTEM
+   - 32x32 SVG pointers adhering to browser sizing standards
+   - Exact hotspot coordinates for 100% click precision:
+     * Default Arrow: (4, 4) at the sharp tip
+     * Clickable Pointer: (16, 16) at the central reticle target
+     * Text I-Beam: (16, 16) at the center beam
+   - Reliable system fallbacks: auto, pointer, text
+   - Touchscreen & reduced-motion accessibility overrides
+   ========================================================================== */
+
+@media (hover: hover) and (pointer: fine) {
+  html, body {
+    cursor: url('cursor-default.svg') 4 4, auto;
+  }
+
+  /* Interactive Elements */
+  a, 
+  button, 
+  [role="button"], 
+  .btn-pill, 
+  .social-card-btn, 
+  .project-repo-link, 
+  .mobile-menu-toggle, 
+  .footer-back-to-top, 
+  .resume-pill, 
+  .btn-copy-email,
+  .clean-project-card,
+  .interest-card,
+  .timeline-card {
+    cursor: url('cursor-pointer.svg') 16 16, pointer;
+  }
+
+  /* Text selection / Inputs */
+  input, 
+  textarea, 
+  [contenteditable="true"], 
+  code, 
+  pre {
+    cursor: url('cursor-text.svg') 16 16, text;
+  }
+
+  /* Interactive Ambient Aura / Trailing Follower */
+  .cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent-blue);
+    background: var(--accent-blue-subtle);
+    pointer-events: none;
+    z-index: 999999;
+    opacity: 0;
+    transition: width 0.22s cubic-bezier(0.2, 0.9, 0.3, 1),
+                height 0.22s cubic-bezier(0.2, 0.9, 0.3, 1),
+                background-color 0.2s ease,
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                opacity 0.25s ease;
+    will-change: transform;
+    box-shadow: 0 0 10px var(--accent-blue-glow);
+  }
+
+  .cursor-follower.active {
+    width: 44px;
+    height: 44px;
+    background: rgba(74, 144, 226, 0.16);
+    border-color: #FFFFFF;
+    box-shadow: 0 0 18px var(--accent-blue-glow);
+  }
+
+  .cursor-follower.clicking {
+    width: 20px;
+    height: 20px;
+    background: rgba(74, 144, 226, 0.35);
+    border-color: var(--accent-blue);
+  }
+}
+
+/* Touchscreens, tablets & mobile phones: Fallback strictly to native system cursors */
+@media (hover: none) or (pointer: coarse) {
+  .cursor-follower {
+    display: none !important;
+  }
+  html, body, a, button, input, textarea {
+    cursor: auto !important;
+  }
+}
+
+/* Reduced-motion preference: disable trailing animations & follower */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-follower {
+    display: none !important;
+  }
+}
+
